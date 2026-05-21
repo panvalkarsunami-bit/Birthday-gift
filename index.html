@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Happy Birthday Buddie 🎉</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet"/>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+      height:100vh;
+      overflow:hidden;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:linear-gradient(135deg,#ff416c,#ff4b2b);
+      padding:20px;
+      position:relative;
+    }
+
+    .card{
+      width:100%;
+      max-width:400px;
+      background:rgba(255,255,255,0.12);
+      backdrop-filter:blur(10px);
+      border-radius:25px;
+      padding:35px 25px;
+      text-align:center;
+      color:white;
+      z-index:2;
+      box-shadow:0 10px 35px rgba(0,0,0,0.3);
+      animation:show 1s ease;
+    }
+
+    h1{
+      font-size:2.2rem;
+      margin-bottom:15px;
+    }
+
+    p{
+      line-height:1.8;
+      margin-bottom:25px;
+      color:#ffecec;
+    }
+
+    button{
+      border:none;
+      padding:14px 30px;
+      border-radius:50px;
+      background:white;
+      color:#ff416c;
+      font-size:1rem;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    button:hover{
+      transform:scale(1.08);
+    }
+
+    .surprise{
+      display:none;
+      margin-top:25px;
+      animation:pop 1s ease;
+    }
+
+    .surprise h2{
+      font-size:1.8rem;
+      color:#fff;
+      margin-bottom:10px;
+    }
+
+    .surprise p{
+      color:#fff5f5;
+      margin-bottom:0;
+    }
+
+    @keyframes show{
+
+      from{
+        opacity:0;
+        transform:scale(0.8);
+      }
+
+      to{
+        opacity:1;
+        transform:scale(1);
+      }
+
+    }
+
+    @keyframes pop{
+
+      from{
+        opacity:0;
+        transform:translateY(20px);
+      }
+
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+
+    }
+
+    canvas{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      pointer-events:none;
+    }
+
+    @media(max-width:480px){
+
+      h1{
+        font-size:1.8rem;
+      }
+
+      .surprise h2{
+        font-size:1.5rem;
+      }
+
+      p{
+        font-size:0.95rem;
+      }
+
+      button{
+        width:100%;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+<canvas id="canvas"></canvas>
+
+<div class="card">
+
+  <h1>🎂 Happy Birthday Buddie!</h1>
+
+  <p>
+    Wishing you lots of happiness,
+    success and unforgettable memories ✨❤️
+  </p>
+
+  <button onclick="celebrate()">
+    Celebrate 🎊
+  </button>
+
+  <!-- Surprise -->
+  <div class="surprise" id="surprise">
+
+    <h2>🎁 Surpriseeee! 🎁</h2>
+
+    <p>
+      Tu mazyasathi khup special ahes ❤️<br><br>
+
+      Thank you for always being there 🫶  
+      May your smile always shine like this ✨
+    </p>
+
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+<script>
+
+const canvas = document.getElementById('canvas');
+
+const myConfetti = confetti.create(canvas,{
+  resize:true
+});
+
+function celebrate(){
+
+  // Confetti
+  myConfetti({
+    particleCount:250,
+    spread:140,
+    origin:{ y:0.6 }
+  });
+
+  setTimeout(() => {
+
+    myConfetti({
+      particleCount:120,
+      angle:60,
+      spread:70,
+      origin:{ x:0 }
+    });
+
+    myConfetti({
+      particleCount:120,
+      angle:120,
+      spread:70,
+      origin:{ x:1 }
+    });
+
+  },300);
+
+  // Show surprise after 2 sec
+  setTimeout(() => {
+
+    document.getElementById("surprise").style.display = "block";
+
+  },2000);
+
+}
+
+</script>
+
+</body>
+</html>
